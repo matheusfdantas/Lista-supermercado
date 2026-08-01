@@ -1,0 +1,279 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+
+}
+.inicio{
+    width: 25rem;
+    height: 50rem;
+    border: 10px solid #2e2e2e;
+    border-radius: 40px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+}
+
+.menu-btn{
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.menu-btn:hover svg{
+    stroke:  #FFD54F;
+     transform: scale(1.1);
+}
+
+.menu-btn svg{
+    width: 100%;
+    height: 100%;
+    stroke: white;
+    transition: .2s;
+    
+}
+
+.topo{
+    height: 135px;
+    background: #6fb98f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.titulo  {
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color:white;
+    
+}
+
+.conteudo{
+    background: white;
+    border-radius: 30px 30px 0 0;
+    margin-top: -15px;
+}
+
+.container{
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    margin:-24px 20px 0 20px;
+    position: relative;
+     z-index: 2;
+
+}
+
+
+#input-produto{
+    flex: 1;
+    height: 55px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 35px;
+    background: #fff;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+#add-btn{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 4px solid white; 
+    background-color: #6fb98f; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s;
+    position: absolute;
+    right: 24px;
+   
+}
+
+#add-btn svg{
+    width: 24px;
+    height: 24px;
+    color: white;
+    box-shadow: 0 5px 12px rgba(0,0,0,.15);
+}
+
+#add-btn:hover{
+    background:#5ea87f;
+    transform: scale(1.08);
+
+}
+
+.titulo-buy{
+    margin: 10px;
+}
+
+.titulo-buy h2{
+    font-size: 25px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #2e2e2e;
+}
+
+.lista-produtos{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-produto{
+    background: white;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.12);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-produto:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.nome-produto{
+   font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2e2e2e;
+     transition: .3s;
+}
+
+.info-produto{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.quantidade{
+    font-family: "Poppins", sans-serif;
+    color:#777;
+    font-size:15px;
+}
+
+.btn-excluir{
+      min-width: 2rem;
+    height: 2rem;
+
+    border: none;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    background-color: rgba(0, 0, 0, 0.03);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .3s;
+}
+
+.btn-excluir svg{
+    width: 22px;
+    height: 22px;
+    stroke: #e74c3c;
+}
+
+.card-produto:hover .btn-excluir{
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn-excluir:hover{
+    background: rgba(0, 0, 0, 0.031);
+    transform: scale(1.1);
+}
+
+.btn-excluir:hover svg{
+    stroke: #e74c3c;
+}
+
+.checkmark{
+    width: 22px;
+    height: 22px;
+    border: 2px solid #cfcfcf;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .25s;
+}
+
+.checkmark svg{
+    width: 10px;
+    height: 10px;
+    stroke-width: 3;
+    stroke: white;
+    opacity: 0;
+    transition: .25s;
+}
+
+.produto{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    
+
+
+}
+
+.produto input{
+    display: none;
+    width: 22px;
+    height: 22px;
+}
+
+.produto input:checked ~ .nome-produto{
+    text-decoration: line-through;
+    color: #2e2e2e;
+     opacity: .7;
+}
+
+.produto input:checked + .checkmark{
+    background: #6fb98f;
+    border-color: #6fb98f;
+}
+
+.produto input:checked + .checkmark svg{
+    opacity: 1;
+}
+
+
+.quantidade{
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7a7a7a;
+    margin-left: auto;
+    margin-right: 15px;
+}
