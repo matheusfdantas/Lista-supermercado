@@ -1,6 +1,7 @@
-let produtos = [];
+// 1. Busca os produtos salvos no LocalStorage. Se não houver nenhum, inicia com array vazio.
+let produtos = JSON.parse(localStorage.getItem("meus_produtos")) || [];
 
-
+// Mapeamento de imagens por categoria
 const imagensCategorias = {
     "Hortifruti": "https://cdn-icons-png.flaticon.com/512/3194/3194766.png",
     "Laticínios": "https://cdn-icons-png.flaticon.com/512/3050/3050158.png",
@@ -11,13 +12,18 @@ const imagensCategorias = {
     "Outros": "https://cdn-icons-png.flaticon.com/512/3081/3081840.png"
 };
 
-
+// Seleção dos elementos do HTML
 const inputProduto = document.querySelector("#input-produto");
 const selectCategoria = document.querySelector("#select-categoria");
 const botaoAdicionar = document.querySelector("#add-btn");
 const listaProdutos = document.querySelector(".lista-produtos");
 
+// Função para atualizar o LocalStorage com os dados atuais da lista
+function salvarNoLocalStorage() {
+    localStorage.setItem("meus_produtos", JSON.stringify(produtos));
+}
 
+// Renderiza os produtos na tela
 function renderizarProdutos() {
     listaProdutos.innerHTML = "";
 
@@ -51,8 +57,12 @@ function renderizarProdutos() {
 
         listaProdutos.appendChild(card);
     });
+
+    // Salva a lista atualizada no navegador
+    salvarNoLocalStorage();
 }
 
+// Função para adicionar novo produto
 function adicionarProduto() {
     const nome = inputProduto.value.trim();
     const categoria = selectCategoria.value;
@@ -72,17 +82,12 @@ function adicionarProduto() {
 
     inputProduto.value = "";
     inputProduto.focus();
+
+    // Rola o container da lista até o final suavemente
+    listaProdutos.scrollTop = listaProdutos.scrollHeight;
 }
 
-
-botaoAdicionar.addEventListener("click", adicionarProduto);
-inputProduto.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        adicionarProduto();
-    }
-});
-
-
+// Remover produto ao clicar na lixeira
 listaProdutos.addEventListener("click", (e) => {
     const btnExcluir = e.target.closest(".btn-excluir");
 
@@ -93,9 +98,13 @@ listaProdutos.addEventListener("click", (e) => {
     }
 });
 
+// Eventos para adicionar produto
 botaoAdicionar.addEventListener("click", adicionarProduto);
 inputProduto.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         adicionarProduto();
     }
 });
+
+// Renderiza a lista assim que a página é carregada
+renderizarProdutos();

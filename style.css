@@ -156,6 +156,9 @@ body{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;  
+    padding-right: 5px; 
 }
 
 .card-produto{
