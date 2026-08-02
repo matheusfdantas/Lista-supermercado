@@ -334,9 +334,22 @@ body{
 
 }
 .screen {
-    display: none;
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-in-out;
 }
 
 .screen.active {
-    display: block;
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wrapper {
+    position: relative;
 }

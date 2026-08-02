@@ -4,7 +4,7 @@ const imagensCategorias = {
     "Hortifruti": "https://cdn-icons-png.flaticon.com/512/3194/3194766.png",
     "Laticínios": "https://cdn-icons-png.flaticon.com/512/3050/3050158.png",
     "Padaria": "https://cdn-icons-png.flaticon.com/512/3014/3014535.png",
-    "Açougue": "https://cdn-icons-png.flaticon.com/512/3082/3082008.png",
+    "Açougue": "https://cdn-icons-png.flaticon.com/128/1718/1718484.png",
     "Bebidas": "https://cdn-icons-png.flaticon.com/512/2405/2405479.png",
     "Limpeza": "https://cdn-icons-png.flaticon.com/512/995/995053.png",
     "Outros": "https://cdn-icons-png.flaticon.com/512/3081/3081840.png"
@@ -62,11 +62,11 @@ function renderizarProdutos() {
     salvarNoLocalStorage();
 }
 
-// Renderiza na tela do carrinho SOMENTE os produtos marcados/riscados
+
 function renderizarCarrinho() {
     listaCarrinho.innerHTML = "";
 
-    // Filtra apenas os itens marcados (concluido === true)
+   
     const produtosNoCarrinho = produtos.filter(produto => produto.concluido);
 
     if (produtosNoCarrinho.length === 0) {
