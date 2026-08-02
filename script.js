@@ -62,14 +62,35 @@ function renderizarProdutos() {
     salvarNoLocalStorage();
 }
 
-
+// Renderiza na tela do carrinho SOMENTE os produtos marcados/riscados
 function renderizarCarrinho() {
     listaCarrinho.innerHTML = "";
 
-    if (produtos.length === 0) {
-        listaCarrinho.innerHTML = "<p style='text-align:center; padding: 20px; color: #666;'>Seu carrinho está vazio!</p>";
+    // Filtra apenas os itens marcados (concluido === true)
+    const produtosNoCarrinho = produtos.filter(produto => produto.concluido);
+
+    if (produtosNoCarrinho.length === 0) {
+        listaCarrinho.innerHTML = "<p style='text-align:center; padding: 20px; color: #666;'>Nenhum item marcado no carrinho ainda!</p>";
         return;
     }
+
+    produtosNoCarrinho.forEach((produto) => {
+        const imagemUrl = imagensCategorias[produto.categoria] || imagensCategorias["Outros"];
+        const card = document.createElement("div");
+        card.classList.add("card-produto");
+
+        card.innerHTML = `
+            <div class="produto">
+                <img src="${imagemUrl}" alt="${produto.categoria}" style="width: 24px; height: 24px; margin-right: 8px;">
+                <span class="nome-produto" style="text-decoration: line-through;">${produto.nome}</span>
+            </div>
+            <span class="quantidade">Qtd: ${produto.quantidade}</span>
+        `;
+
+        listaCarrinho.appendChild(card);
+    });
+}
+
 
     produtos.forEach((produto) => {
         const imagemUrl = imagensCategorias[produto.categoria] || imagensCategorias["Outros"];
@@ -86,7 +107,7 @@ function renderizarCarrinho() {
 
         listaCarrinho.appendChild(card);
     });
-}
+
 
 
 function adicionarProduto() {
@@ -140,3 +161,16 @@ inputProduto.addEventListener("keypress", (e) => {
 });
 
 renderizarProdutos();
+
+
+listaHome.addEventListener("change", (e) => {
+    if (e.target.type === "checkbox") {
+        const id = e.target.dataset.id;
+        const produto = produtos.find(p => p.id === id);
+
+        if (produto) {
+            produto.concluido = e.target.checked;
+            salvarNoLocalStorage(); 
+        }
+    }
+});
