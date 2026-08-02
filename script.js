@@ -1,7 +1,5 @@
-// 1. Busca os produtos salvos no LocalStorage. Se não houver nenhum, inicia com array vazio.
 let produtos = JSON.parse(localStorage.getItem("meus_produtos")) || [];
 
-// Mapeamento de imagens por categoria
 const imagensCategorias = {
     "Hortifruti": "https://cdn-icons-png.flaticon.com/512/3194/3194766.png",
     "Laticínios": "https://cdn-icons-png.flaticon.com/512/3050/3050158.png",
@@ -12,24 +10,27 @@ const imagensCategorias = {
     "Outros": "https://cdn-icons-png.flaticon.com/512/3081/3081840.png"
 };
 
-// Seleção dos elementos do HTML
+
 const inputProduto = document.querySelector("#input-produto");
 const selectCategoria = document.querySelector("#select-categoria");
 const botaoAdicionar = document.querySelector("#add-btn");
-const listaProdutos = document.querySelector(".lista-produtos");
+const listaHome = document.querySelector("#lista-home");
+const listaCarrinho = document.querySelector("#lista-carrinho");
 
-// Função para atualizar o LocalStorage com os dados atuais da lista
+const homeScreen = document.querySelector(".home-screen");
+const carrinhoScreen = document.querySelector(".carrinho-screen");
+const btnIrCarrinho = document.querySelector("#btn-ir-carrinho");
+const btnVoltarHome = document.querySelector("#btn-voltar-home");
+
 function salvarNoLocalStorage() {
     localStorage.setItem("meus_produtos", JSON.stringify(produtos));
 }
 
-// Renderiza os produtos na tela
 function renderizarProdutos() {
-    listaProdutos.innerHTML = "";
+    listaHome.innerHTML = "";
 
     produtos.forEach((produto) => {
         const imagemUrl = imagensCategorias[produto.categoria] || imagensCategorias["Outros"];
-
         const card = document.createElement("div");
         card.classList.add("card-produto");
 
@@ -55,14 +56,39 @@ function renderizarProdutos() {
             </div>
         `;
 
-        listaProdutos.appendChild(card);
+        listaHome.appendChild(card);
     });
 
-    // Salva a lista atualizada no navegador
     salvarNoLocalStorage();
 }
 
-// Função para adicionar novo produto
+
+function renderizarCarrinho() {
+    listaCarrinho.innerHTML = "";
+
+    if (produtos.length === 0) {
+        listaCarrinho.innerHTML = "<p style='text-align:center; padding: 20px; color: #666;'>Seu carrinho está vazio!</p>";
+        return;
+    }
+
+    produtos.forEach((produto) => {
+        const imagemUrl = imagensCategorias[produto.categoria] || imagensCategorias["Outros"];
+        const card = document.createElement("div");
+        card.classList.add("card-produto");
+
+        card.innerHTML = `
+            <div class="produto">
+                <img src="${imagemUrl}" alt="${produto.categoria}" style="width: 24px; height: 24px; margin-right: 8px;">
+                <span class="nome-produto">${produto.nome}</span>
+            </div>
+            <span class="quantidade">Qtd: ${produto.quantidade}</span>
+        `;
+
+        listaCarrinho.appendChild(card);
+    });
+}
+
+
 function adicionarProduto() {
     const nome = inputProduto.value.trim();
     const categoria = selectCategoria.value;
@@ -82,13 +108,11 @@ function adicionarProduto() {
 
     inputProduto.value = "";
     inputProduto.focus();
-
-    // Rola o container da lista até o final suavemente
-    listaProdutos.scrollTop = listaProdutos.scrollHeight;
+    listaHome.scrollTop = listaHome.scrollHeight;
 }
 
-// Remover produto ao clicar na lixeira
-listaProdutos.addEventListener("click", (e) => {
+
+listaHome.addEventListener("click", (e) => {
     const btnExcluir = e.target.closest(".btn-excluir");
 
     if (btnExcluir) {
@@ -98,13 +122,21 @@ listaProdutos.addEventListener("click", (e) => {
     }
 });
 
-// Eventos para adicionar produto
-botaoAdicionar.addEventListener("click", adicionarProduto);
-inputProduto.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        adicionarProduto();
-    }
+
+btnIrCarrinho.addEventListener("click", () => {
+    renderizarCarrinho();
+    homeScreen.classList.remove("active");
+    carrinhoScreen.classList.add("active");
 });
 
-// Renderiza a lista assim que a página é carregada
+btnVoltarHome.addEventListener("click", () => {
+    carrinhoScreen.classList.remove("active");
+    homeScreen.classList.add("active");
+});
+
+botaoAdicionar.addEventListener("click", adicionarProduto);
+inputProduto.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") adicionarProduto();
+});
+
 renderizarProdutos();
