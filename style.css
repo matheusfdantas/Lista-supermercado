@@ -169,7 +169,6 @@ body{
     align-items: center;
     gap: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,.12);
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -191,11 +190,7 @@ body{
     align-items: center;
     gap: 18px;
 }
-.quantidade{
-    font-family: "Poppins", sans-serif;
-    color:#777;
-    font-size:15px;
-}
+
 
 .btn-excluir{
       min-width: 2rem;

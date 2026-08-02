@@ -92,22 +92,6 @@ function renderizarCarrinho() {
 }
 
 
-    produtos.forEach((produto) => {
-        const imagemUrl = imagensCategorias[produto.categoria] || imagensCategorias["Outros"];
-        const card = document.createElement("div");
-        card.classList.add("card-produto");
-
-        card.innerHTML = `
-            <div class="produto">
-                <img src="${imagemUrl}" alt="${produto.categoria}" style="width: 24px; height: 24px; margin-right: 8px;">
-                <span class="nome-produto">${produto.nome}</span>
-            </div>
-            <span class="quantidade">Qtd: ${produto.quantidade}</span>
-        `;
-
-        listaCarrinho.appendChild(card);
-    });
-
 
 
 function adicionarProduto() {
