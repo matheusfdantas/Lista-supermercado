@@ -7,14 +7,14 @@
     <title>List Super Market</title>
 </head>
 <body>
-    <div class="wrapper">
+    
+    <div class="inicio">
+        <div class="wrapper">
 
-      
-        <div class="home-screen screen active">
-            <div class="inicio">
+            
+            <div class="home-screen screen active">
                 <div class="topo">
                     <div class="titulo">Lista Super Mercado</div>
-                    
                     
                     <div class="menu-btn" id="btn-ir-carrinho" style="cursor: pointer;">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -46,17 +46,13 @@
                         <h2>Minha Lista De Compras</h2>
                     </div>
 
-                    
                     <div class="lista-produtos" id="lista-home"></div>
                 </div>
             </div>
-        </div>
 
-        
-        <div class="carrinho-screen screen">
-            <div class="inicio">
+           
+            <div class="carrinho-screen screen">
                 <div class="topo">
-                    
                     <div class="back-btn" id="btn-voltar-home" style="cursor: pointer;">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:28px; height:28px;">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
@@ -66,13 +62,15 @@
                 </div>
 
                 <div class="conteudo">
-                   
+                    <div class="titulo-buy" style="margin-top: 25px;">
+                        <h2>Itens no Carrinho</h2>
+                    </div>
                     
                     <div class="lista-produtos" id="lista-carrinho"></div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
     <script src="script.js"></script>
