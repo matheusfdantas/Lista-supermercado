@@ -1,3 +1,4 @@
+
 *{
     margin:0;
     padding:0;
@@ -296,8 +297,7 @@ body{
 
 .produto input{
     display: none;
-    width: 22px;
-    height: 22px;
+   
 }
 
 .produto input:checked ~ .nome-produto{
@@ -378,4 +378,13 @@ body{
 
 .wrapper {
     position: relative;
+}
+
+@media (max-width: 430px){
+
+    .inicio{
+        width: 100%;
+        height: 100vh;
+    }
+
 }
