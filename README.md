@@ -1,4 +1,4 @@
-# 🛒 List SuperMarket
+# 🛒 Lista Super Mercado
 
 **Aluno:** Matheus Dantas
 
@@ -91,6 +91,6 @@ Basta abrir o arquivo `index.html` no navegador ou utilizar a extensão Live Ser
 
 ## Links
 
-**Repositório:** (coloque o link)
+**Repositório:** https://github.com/matheusfdantas/Lista-supermercado
 
-**GitHub Pages:** (coloque o link quando publicar)
+**GitHub Pages:** https://matheusfdantas.github.io/Lista-supermercado/
